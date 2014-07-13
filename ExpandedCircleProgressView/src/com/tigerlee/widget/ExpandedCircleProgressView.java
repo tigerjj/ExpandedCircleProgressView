@@ -139,27 +139,85 @@ public class ExpandedCircleProgressView extends View {
 
 		cancelUpdateTask();
 	}
+	
+	/**
+	 * Set size of the inner circle
+	 * @param size size of the inner circle
+	 */
+	public void setInnerCircleSize(int size){
+		mInnerCircleSize = size;
+		INCRESING_SIZE = (mOuterCircleSize - mInnerCircleSize) / 100;
+	}
+	/**
+	 * Set size of the outer circle
+	 * @param size size of the outer circle
+	 */
+	public void setOuterCircleSize(int size){
+		mOuterCircleSize = size;
+		INCRESING_SIZE = (mOuterCircleSize - mInnerCircleSize) / 100;
+		SLEEP_TIME = (int) (INCRESING_SIZE * 1500 / mOuterCircleSize);
+	}
 
+	/**
+	 * Set color of the inner circle
+	 * @param color color of the inner circle
+	 */
 	public void setInnerCircleColor(int color) {
 		mInnerCircleColor = color;
 	}
 
+	/**
+	 * Set color of the outer circle
+	 * @param color color of the outer circle
+	 */
 	public void setOuterCircleColor(int color) {
 		mOuterCircleColor = color;
 	}
 
-	public void setTextColor(int color) {
+	/**
+	 * Set color of the progress text 
+	 * @param color color of the progress text 
+	 */
+	public void setProgressTextColor(int color) {
 		mTextProgressColor = color;
 	}
 
+	/**
+	 * Set color of circle of expanding progress  
+	 * @param color color of circle of expanding progress 
+	 */
 	public void setProgresColor(int color) {
 		mProgressCircleColor = color;
 	}
+	
+	/**
+	 * Set width of the outer circle line
+	 * @param width width of the outer circle line
+	 */
+	public void setOuterCircleLineWidth(int width) {
+		mOuterCircleLineWidth = width;
+	}
+	
+	/**
+	 * Set size of the progress text
+	 * @param size size of the progress text
+	 */
+	public void setTextProgressSize(int size) {
+		mTextSize = size;
+	}
 
+	/**
+	 * get maximum value of progress
+	 * @return maximum value of progress
+	 */
 	public int getMaxProgress() {
 		return MAX_PROGRESS;
 	}
 
+	/**
+	 * set current progress 
+	 * @param progress set progress from 0 to max progress(100)
+	 */
 	public void setProgress(int progress) {
 		if (mUpdateTask != null)
 			mUpdateTask.cancel(true);
@@ -262,6 +320,9 @@ public class ExpandedCircleProgressView extends View {
 		}
 	}
 
+	/**
+	 * Cancel updating progress task  
+	 */
 	public void cancelUpdateTask() {
 		if (mUpdateTask != null)
 			mUpdateTask.cancel(true);
